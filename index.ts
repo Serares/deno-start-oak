@@ -1,10 +1,14 @@
 
-let message: string = "Ce faci coiutz";
+import { serve } from "https://deno.land/std/http/server.ts";
 
-let encoder = new TextEncoder();
-let data = encoder.encode(message);
 
-Deno.writeFile("message.txt", data)
-    .then(() => {
-        console.log("Wrote the file");
-    })
+// it's an async iterable
+// like an array of promises
+const server = serve({
+    port: 3000
+})
+
+for await (const req of server) {
+    req.respond({ body: "Hello Mo fo\n" });
+}
+

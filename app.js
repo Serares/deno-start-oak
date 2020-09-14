@@ -1,6 +1,7 @@
-const fs = require('fs').promises;
+const http = require('http');
 
-fs.writeFile('message.txt', "Ce faci coiule")
-    .then(function () {
-        console.log("write file");
-    })
+const server = http.createServer((req,res)=>{
+    res.end("Hello Mo Fo");
+})
+
+server.listen(3000);
