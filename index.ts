@@ -1,14 +1,13 @@
 
-import { serve } from "https://deno.land/std/http/server.ts";
+import { Application } from "https://deno.land/x/oak/mod.ts";
 
 
-// it's an async iterable
-// like an array of promises
-const server = serve({
-    port: 3000
-})
+const app = new Application();
 
-for await (const req of server) {
-    req.respond({ body: "Hello Mo fo\n" });
-}
+// type Context = { response: { body: string; } };
 
+app.use((ctx) => {
+    ctx.response.body = "Hello World!";
+});
+
+await app.listen({ port: 3000 });
